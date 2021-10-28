@@ -20,6 +20,17 @@ List<GridListItems> items = [
   GridListItems(color.shot12, 'Kamikaze', Icons.looks_one_outlined),
 ];
 
+List<GridListItems> categories = [
+  GridListItems(color.shot1, 'category 1', Icons.looks_one_outlined),
+  GridListItems(color.shot2, 'category 2', Icons.looks_one_outlined),
+  GridListItems(color.shot3, 'category 3', Icons.looks_one_outlined),
+  GridListItems(color.shot4, 'category 4', Icons.looks_one_outlined),
+  GridListItems(color.shot5, 'category 5', Icons.looks_one_outlined),
+  GridListItems(color.shot6, 'category 6', Icons.looks_one_outlined),
+  GridListItems(color.shot7, 'category 7', Icons.looks_one_outlined),
+  GridListItems(color.shot8, 'category 8', Icons.looks_one_outlined),
+];
+
 class GridListItems {
   Color color;
   String title;
@@ -36,7 +47,20 @@ class GridListItems {
 // }
 
 // ignore: use_key_in_widget_constructors
-class BarMenuPage extends StatelessWidget {
+class BarMenuPage extends StatefulWidget {
+  @override
+  State<BarMenuPage> createState() => _BarMenuPageState();
+}
+
+class _BarMenuPageState extends State<BarMenuPage> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
 // code for the home page layout
@@ -46,51 +70,101 @@ class BarMenuPage extends StatelessWidget {
         title: Text('Menu'),
       ),
       // ignore: prefer_const_constructors
-      body: Center(
-        // code for the button in the home page
-        // ignore: prefer_const_constructors
-        child: GridView.count(
-          crossAxisCount: 4,
-          childAspectRatio: (2 / 1),
-          crossAxisSpacing: 5,
-          mainAxisSpacing: 5,
-          //physics:BouncingScrollPhysics(),
-          padding: EdgeInsets.all(10.0),
-          children: items
-              .map(
-                (data) => GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, route.recipePage),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      //color: data.color,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.greenAccent)),
-                      child: Column(
-                        children: [
-                          Icon(
-                            data.icon,
-                            size: 48,
-                            color: Colors.black,
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.blueAccent)),
-                              child: AutoSizeText(
-                                data.title,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                //style: const TextStyle(fontSize: 36)
-                                style: TextStyle(fontSize: 10.sp),
-                              ),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(children: [
+              _getCategoriesGird(context),
+              _getDrinksGird(context, _scrollController),
+            ]),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _getDrinksGird(
+      BuildContext context, ScrollController scrollControlller) {
+    return Expanded(
+      child: GridView.count(
+        crossAxisCount: 4,
+        childAspectRatio: (2 / 1),
+        crossAxisSpacing: 5,
+        mainAxisSpacing: 5,
+        //physics:BouncingScrollPhysics(),
+        controller: scrollControlller,
+        padding: const EdgeInsets.all(10.0),
+        children: items
+            .map(
+              (data) => GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, route.recipePage),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    //color: data.color,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.greenAccent)),
+                    child: Column(
+                      children: [
+                        Icon(
+                          data.icon,
+                          size: 48,
+                          color: Colors.black,
+                        ),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blueAccent)),
+                            child: AutoSizeText(
+                              data.title,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              //style: const TextStyle(fontSize: 36)
+                              style: TextStyle(fontSize: 10.sp),
                             ),
-                          )
-                        ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+            )
+            .toList(),
+      ),
+    );
+  }
+
+  Widget _getCategoriesGird(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(border: Border.all(color: Colors.redAccent)),
+      child: GridView.count(
+        crossAxisCount: 4,
+        childAspectRatio: (2 / 1),
+        crossAxisSpacing: 5,
+        mainAxisSpacing: 5,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(10.0),
+        children: categories
+            .map(
+              (data) => GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, route.recipePage),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    //color: data.color,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent)),
+                      child: AutoSizeText(
+                        data.title,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        //style: const TextStyle(fontSize: 36)
+                        style: TextStyle(fontSize: 10.sp),
                       ),
-                    )),
-              )
-              .toList(),
-        ),
+                    ),
+                  )),
+            )
+            .toList(),
       ),
     );
   }
