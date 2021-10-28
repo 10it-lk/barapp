@@ -31,23 +31,17 @@ class _BarMenuPageState extends State<BarMenuPage> {
   @override
   Widget build(BuildContext context) {
 // code for the home page layout
+
     return Scaffold(
       appBar: AppBar(
         // ignore: prefer_const_constructors
-        title: Text('Menu'),
+        title: Text('Menu', style: TextStyle(fontSize: 12.sp)),
       ),
       // ignore: prefer_const_constructors
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(children: [
-              _getCategoriesGird(context),
-              _getDrinksGird(context, _scrollController),
-            ]),
-          ),
-        ],
-      ),
+      body: Column(children: [
+        _getCategoriesGird(context),
+        _getDrinksGird(context, _scrollController),
+      ]),
     );
   }
 
@@ -55,7 +49,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
       BuildContext context, ScrollController scrollControlller) {
     return Expanded(
       child: GridView.count(
-        crossAxisCount: 4,
+        crossAxisCount: isTablet() ? 4 : 2,
         childAspectRatio: (2 / 1),
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
@@ -69,9 +63,12 @@ class _BarMenuPageState extends State<BarMenuPage> {
                   onTap: () => Navigator.pushNamed(context, route.recipePage),
                   child: Container(
                     padding: const EdgeInsets.all(8),
-                    //color: data.color,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.greenAccent)),
+                      border: Border.all(
+                        color: data.color,
+                      ),
+                    ),
+                    //color: data.color,
                     child: Column(
                       children: [
                         Icon(
@@ -80,16 +77,12 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           color: Colors.black,
                         ),
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)),
-                            child: AutoSizeText(
-                              data.title,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              //style: const TextStyle(fontSize: 36)
-                              style: TextStyle(fontSize: 10.sp),
-                            ),
+                          child: AutoSizeText(
+                            data.title,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            //style: const TextStyle(fontSize: 36)
+                            style: TextStyle(fontSize: 10.sp),
                           ),
                         )
                       ],
@@ -102,47 +95,41 @@ class _BarMenuPageState extends State<BarMenuPage> {
   }
 
   Widget _getCategoriesGird(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all(color: Colors.redAccent)),
-      child: GridView.count(
-        crossAxisCount: 4,
-        childAspectRatio: (2 / 1),
-        crossAxisSpacing: 5,
-        mainAxisSpacing: 5,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: const EdgeInsets.all(10.0),
-        children: categories
-            .map(
-              (data) => GestureDetector(
-                  onTap: () => updateDrinksList(data.id),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    //color: data.color,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blueAccent)),
-                      child: AutoSizeText(
-                        data.title,
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        //style: const TextStyle(fontSize: 36)
-                        style: TextStyle(fontSize: 10.sp),
-                      ),
-                    ),
-                  )),
-            )
-            .toList(),
-      ),
+    return GridView.count(
+      crossAxisCount: isTablet() ? 4 : 2,
+      childAspectRatio: (2 / 1),
+      crossAxisSpacing: 5,
+      mainAxisSpacing: 5,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(10.0),
+      children: categories
+          .map(
+            (data) => GestureDetector(
+                onTap: () => updateDrinksList(data.id),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  color: data.color,
+                  child: AutoSizeText(
+                    data.title,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    //style: const TextStyle(fontSize: 36)
+                    style: TextStyle(fontSize: 10.sp),
+                  ),
+                )),
+          )
+          .toList(),
     );
   }
 
   updateDrinksList(int catId) {
-    // ignore: avoid_print
-    print(catId);
-
     setState(() {
       _category = catId;
     });
+  }
+
+  bool isTablet() {
+    return 100.w > 400;
   }
 }

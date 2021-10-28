@@ -44,7 +44,8 @@ List<CategoryItem> categories = [
   CategoryItem(1, color.shot1, 'category 1', Icons.looks_one_outlined),
   CategoryItem(2, color.shot2, 'category 2', Icons.looks_one_outlined),
   CategoryItem(3, color.shot3, 'category 3', Icons.looks_one_outlined),
-  CategoryItem(4, color.shot4, 'category 4', Icons.looks_one_outlined),
+  CategoryItem(
+      4, color.shot4, 'category long text here 4', Icons.looks_one_outlined),
   CategoryItem(5, color.shot5, 'category 5', Icons.looks_one_outlined),
   CategoryItem(6, color.shot6, 'category 6', Icons.looks_one_outlined),
   CategoryItem(7, color.shot7, 'category 7', Icons.looks_one_outlined),
