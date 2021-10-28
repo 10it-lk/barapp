@@ -1,42 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bar_app/routes/route.dart' as route;
-import 'package:bar_app/theme/colors.dart' as color;
 import 'package:sizer/sizer.dart';
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
-
-List<GridListItems> items = [
-  GridListItems(color.shot1, 'Cheap tequila', Icons.looks_one_outlined),
-  GridListItems(
-      color.shot2, 'Pineapple Upside Down Cake', Icons.looks_one_outlined),
-  GridListItems(color.shot3, 'Prairie Oyster', Icons.looks_one_outlined),
-  GridListItems(color.shot4, 'Hot Damn', Icons.looks_one_outlined),
-  GridListItems(color.shot5, 'B - 52', Icons.looks_one_outlined),
-  GridListItems(color.shot6, 'Alice In Wonderland', Icons.looks_one_outlined),
-  GridListItems(color.shot7, 'Jolly Rancher', Icons.looks_one_outlined),
-  GridListItems(color.shot8, 'Mind Eraser', Icons.looks_one_outlined),
-  GridListItems(color.shot9, 'Motor Oil', Icons.looks_one_outlined),
-  GridListItems(color.shot10, 'Afterburner', Icons.looks_one_outlined),
-  GridListItems(color.shot11, 'Irish Car Bomb', Icons.looks_one_outlined),
-  GridListItems(color.shot12, 'Kamikaze', Icons.looks_one_outlined),
-];
-
-List<GridListItems> categories = [
-  GridListItems(color.shot1, 'category 1', Icons.looks_one_outlined),
-  GridListItems(color.shot2, 'category 2', Icons.looks_one_outlined),
-  GridListItems(color.shot3, 'category 3', Icons.looks_one_outlined),
-  GridListItems(color.shot4, 'category 4', Icons.looks_one_outlined),
-  GridListItems(color.shot5, 'category 5', Icons.looks_one_outlined),
-  GridListItems(color.shot6, 'category 6', Icons.looks_one_outlined),
-  GridListItems(color.shot7, 'category 7', Icons.looks_one_outlined),
-  GridListItems(color.shot8, 'category 8', Icons.looks_one_outlined),
-];
-
-class GridListItems {
-  Color color;
-  String title;
-  IconData icon;
-  GridListItems(this.color, this.title, this.icon);
-}
+import 'package:bar_app/models/drinks_data.dart';
 
 // class RandomColorModel {
 //   Random random = Random();
@@ -54,6 +20,7 @@ class BarMenuPage extends StatefulWidget {
 
 class _BarMenuPageState extends State<BarMenuPage> {
   late ScrollController _scrollController;
+  int _category = 1;
 
   @override
   void initState() {
@@ -96,6 +63,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
         controller: scrollControlller,
         padding: const EdgeInsets.all(10.0),
         children: items
+            .where((item) => item.category == _category)
             .map(
               (data) => GestureDetector(
                   onTap: () => Navigator.pushNamed(context, route.recipePage),
@@ -147,7 +115,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
         children: categories
             .map(
               (data) => GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, route.recipePage),
+                  onTap: () => updateDrinksList(data.id),
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     //color: data.color,
@@ -167,5 +135,14 @@ class _BarMenuPageState extends State<BarMenuPage> {
             .toList(),
       ),
     );
+  }
+
+  updateDrinksList(int catId) {
+    // ignore: avoid_print
+    print(catId);
+
+    setState(() {
+      _category = catId;
+    });
   }
 }
