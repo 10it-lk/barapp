@@ -10,38 +10,42 @@ class CategoryItem {
 }
 
 class GridListItems {
+  int id;
   int category;
   Color color;
   String title;
   IconData icon;
-  GridListItems(this.category, this.color, this.title, this.icon);
+  GridListItems(this.id, this.category, this.color, this.title, this.icon);
 }
 
 List<GridListItems> items = [
-  GridListItems(1, color.shot1, 'Cheap tequila', Icons.looks_one_outlined),
+  GridListItems(1, 1, color.shot1, 'Cheap tequila', Icons.looks_one_outlined),
+  GridListItems(2, 1, color.shot2, 'Pineapple Upside Down Cake',
+      Icons.looks_one_outlined),
+  GridListItems(3, 1, color.shot3, 'Prairie Oyster', Icons.looks_one_outlined),
+  GridListItems(4, 1, color.shot4, 'Hot Damn', Icons.looks_one_outlined),
+  GridListItems(5, 1, color.shot5, 'B - 52', Icons.looks_one_outlined),
   GridListItems(
-      1, color.shot2, 'Pineapple Upside Down Cake', Icons.looks_one_outlined),
-  GridListItems(1, color.shot3, 'Prairie Oyster', Icons.looks_one_outlined),
-  GridListItems(1, color.shot4, 'Hot Damn', Icons.looks_one_outlined),
-  GridListItems(1, color.shot5, 'B - 52', Icons.looks_one_outlined),
+      6, 1, color.shot6, 'Alice In Wonderland', Icons.looks_one_outlined),
+  GridListItems(6, 1, color.shot7, 'Jolly Rancher', Icons.looks_one_outlined),
+  GridListItems(7, 1, color.shot8, 'Mind Eraser', Icons.looks_one_outlined),
+  GridListItems(8, 1, color.shot9, 'Motor Oil', Icons.looks_one_outlined),
+  GridListItems(9, 1, color.shot10, 'Afterburner', Icons.looks_one_outlined),
   GridListItems(
-      1, color.shot6, 'Alice In Wonderland', Icons.looks_one_outlined),
-  GridListItems(1, color.shot7, 'Jolly Rancher', Icons.looks_one_outlined),
-  GridListItems(1, color.shot8, 'Mind Eraser', Icons.looks_one_outlined),
-  GridListItems(1, color.shot9, 'Motor Oil', Icons.looks_one_outlined),
-  GridListItems(1, color.shot10, 'Afterburner', Icons.looks_one_outlined),
-  GridListItems(1, color.shot11, 'Irish Car Bomb', Icons.looks_one_outlined),
-  GridListItems(1, color.shot12, 'Kamikaze', Icons.looks_one_outlined),
-  GridListItems(1, color.shot12, 'Local Kassippu', Icons.looks_one_outlined),
-  GridListItems(1, color.shot12, 'Beela Meriyan', Icons.looks_one_outlined),
-  GridListItems(1, color.shot12, 'Hot Water', Icons.looks_one_outlined),
-  GridListItems(1, color.shot12, 'Cocount Arrack', Icons.looks_one_outlined),
-  GridListItems(2, color.shot12, 'Pol Arrack', Icons.looks_one_outlined),
-  GridListItems(2, color.shot12, 'Biiwama Weri', Icons.looks_one_outlined),
+      10, 1, color.shot11, 'Irish Car Bomb', Icons.looks_one_outlined),
+  GridListItems(11, 1, color.shot12, 'Kamikaze', Icons.looks_one_outlined),
+  GridListItems(
+      12, 1, color.shot12, 'Local Kassippu', Icons.looks_one_outlined),
+  GridListItems(13, 1, color.shot12, 'Beela Meriyan', Icons.looks_one_outlined),
+  GridListItems(14, 1, color.shot12, 'Hot Water', Icons.looks_one_outlined),
+  GridListItems(
+      15, 1, color.shot12, 'Cocount Arrack', Icons.looks_one_outlined),
+  GridListItems(16, 2, color.shot12, 'Pol Arrack', Icons.looks_one_outlined),
+  GridListItems(17, 2, color.shot12, 'Biiwama Weri', Icons.looks_one_outlined),
 ];
 
 List<CategoryItem> categories = [
-  CategoryItem(1, color.shot1, 'category 1', Icons.looks_one_outlined),
+  CategoryItem(1, Colors.white10, 'ALL', Icons.looks_one_outlined),
   CategoryItem(2, color.shot2, 'category 2', Icons.looks_one_outlined),
   CategoryItem(3, color.shot3, 'category 3', Icons.looks_one_outlined),
   CategoryItem(

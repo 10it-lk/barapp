@@ -71,11 +71,18 @@ class _BarMenuPageState extends State<BarMenuPage> {
                     //color: data.color,
                     child: Column(
                       children: [
-                        Icon(
-                          data.icon,
-                          size: 48,
-                          color: Colors.black,
+                        CircleAvatar(
+                          backgroundColor: data.color,
+                          child: Text(
+                            '${data.id}',
+                            style: TextStyle(fontSize: 10.sp),
+                          ),
                         ),
+                        // Icon(
+                        //   data.icon,
+                        //   size: 48,
+                        //   color: Colors.black,
+                        // ),
                         Expanded(
                           child: AutoSizeText(
                             data.title,
