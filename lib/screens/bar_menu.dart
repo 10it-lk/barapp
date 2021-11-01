@@ -71,25 +71,24 @@ class _BarMenuPageState extends State<BarMenuPage> {
                     //color: data.color,
                     child: Column(
                       children: [
-                        CircleAvatar(
-                          backgroundColor: data.color,
-                          child: Text(
-                            '${data.id}',
-                            style: TextStyle(fontSize: 10.sp),
+                        Expanded(
+                          child: CircleAvatar(
+                            backgroundColor: data.color,
+                            radius: 11.sp,
+                            child: AutoSizeText(
+                              '${data.id}',
+                              style: TextStyle(fontSize: 12.sp),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
-                        // Icon(
-                        //   data.icon,
-                        //   size: 48,
-                        //   color: Colors.black,
-                        // ),
                         Expanded(
                           child: AutoSizeText(
                             data.title,
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             //style: const TextStyle(fontSize: 36)
-                            style: TextStyle(fontSize: 10.sp),
+                            style: TextStyle(fontSize: 12.sp),
                           ),
                         )
                       ],
