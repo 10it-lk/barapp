@@ -33,3 +33,17 @@ const DarwinWarningShadow = Color.fromRGBO(255, 130, 18, 0.45);
 const DarwinSuccessShadow = Color.fromRGBO(74, 167, 64, 0.45);
 const DarwinDangerShadow = Color.fromRGBO(246, 74, 74, 0.45);
 const DarwinInfoShadow = Color.fromRGBO(62, 172, 252, 0.45);
+
+//shot colors
+const shot1 = Color(0xFFDCEDC8);
+const shot2 = Color(0xFFFF3D00);
+const shot3 = Color(0xFF80CBC4);
+const shot4 = Color(0xFFBA68C8);
+const shot5 = Color(0xFF4FC3F7);
+const shot6 = Color(0xFFDCEDC8);
+const shot7 = Color(0xFFF9A825);
+const shot8 = Color(0xFF7B1FA2);
+const shot9 = Color(0xFFDCEDC8);
+const shot10 = Color(0xFF3949AB);
+const shot11 = Color(0xB3FFFFFF);
+const shot12 = Color(0xFFF06292);
