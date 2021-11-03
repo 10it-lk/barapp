@@ -64,7 +64,8 @@ class RecipePage extends StatelessWidget {
             children: [
               Expanded(
                 child: Center(
-                  child: Image.asset("images/${recipe.recipe.imagePath}"),
+                  child:
+                      Image.asset("assets/images/${recipe.recipe.imagePath}"),
                 ),
               ),
               Expanded(
