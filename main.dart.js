@@ -33984,7 +33984,7 @@ j=T.a6A(H.a([i,T.n3(Q.aal(L.uS(l.c,n,n,n,n,n,n,n,A.dM(n,n,P.aW(153,0,0,0),n,n,n,
 i=S.eC(5)
 r=S.eC(1)
 q=m.f
-p="images/"+q.a
+p="assets/images/"+q.a
 p=T.n3(T.qt(new U.ro(M.alb(n,n,new L.qg(p,n,n)),n),n,n),1)
 o=C.a8.i(0,300)
 o.toString
