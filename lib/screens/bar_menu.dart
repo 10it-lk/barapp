@@ -4,14 +4,6 @@ import 'package:sizer/sizer.dart';
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:bar_app/models/drinks_data.dart';
 
-// class RandomColorModel {
-//   Random random = Random();
-//   Color getColor() {
-//     return Color.fromARGB(random.nextInt(300), random.nextInt(300),
-//         random.nextInt(300), random.nextInt(300));
-//   }
-// }
-
 // ignore: use_key_in_widget_constructors
 class BarMenuPage extends StatefulWidget {
   @override
@@ -20,7 +12,7 @@ class BarMenuPage extends StatefulWidget {
 
 class _BarMenuPageState extends State<BarMenuPage> {
   late ScrollController _scrollController;
-  int _category = 1;
+  List<GridListItems> _filteredItems = items;
 
   @override
   void initState() {
@@ -35,7 +27,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
     return Scaffold(
       appBar: AppBar(
         // ignore: prefer_const_constructors
-        title: Text('Menu', style: TextStyle(fontSize: 12.sp)),
+        title: Text('Menu', style: TextStyle(fontSize: 8.sp)),
       ),
       // ignore: prefer_const_constructors
       body: Column(children: [
@@ -56,13 +48,13 @@ class _BarMenuPageState extends State<BarMenuPage> {
         //physics:BouncingScrollPhysics(),
         controller: scrollControlller,
         padding: const EdgeInsets.all(10.0),
-        children: items
-            .where((item) => item.category == _category)
+        children: _filteredItems
             .map(
               (data) => GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, route.recipePage),
+                  onTap: () => Navigator.pushNamed(context, route.recipePage,
+                      arguments: data.id),
                   child: Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: data.color,
@@ -77,7 +69,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                             radius: 11.sp,
                             child: AutoSizeText(
                               '${data.id}',
-                              style: TextStyle(fontSize: 12.sp),
+                              style: TextStyle(fontSize: 10.sp),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -116,6 +108,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   color: data.color,
+                  alignment: Alignment.center,
                   child: AutoSizeText(
                     data.title,
                     textAlign: TextAlign.center,
@@ -131,7 +124,11 @@ class _BarMenuPageState extends State<BarMenuPage> {
 
   updateDrinksList(int catId) {
     setState(() {
-      _category = catId;
+      if (catId == 99) {
+        _filteredItems = items;
+      } else {
+        _filteredItems = items.where((item) => item.category == catId).toList();
+      }
     });
   }
 

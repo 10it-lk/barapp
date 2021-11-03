@@ -1,3 +1,4 @@
+import 'package:bar_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:bar_app/routes/route.dart' as route;
 import 'package:bar_app/screens/bar_menu.dart';
@@ -31,9 +32,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Bar App',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
+          theme: CustomTheme.lightTheme,
           onGenerateRoute: route.controller,
           home: BarMenuPage(),
         );

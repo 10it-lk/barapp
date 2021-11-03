@@ -13,7 +13,8 @@ Route<dynamic> controller(RouteSettings settings) {
     case menuPage:
       return MaterialPageRoute(builder: (context) => BarMenuPage());
     case recipePage:
-      return MaterialPageRoute(builder: (context) => RecipePage());
+      var itemId = settings.arguments;
+      return MaterialPageRoute(builder: (context) => RecipePage(itemId));
     default:
       throw ('this route name does not exist');
   }
